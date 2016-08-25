@@ -10,7 +10,9 @@ var triviaEntry = [
 	}
 ];
 
-$('body').html(console.log(triviaEntry[0]));
 
-$('body').html(console.log(triviaEntry[0].question));
-$('body').html(console.log(triviaEntry[0].answer));
+$('#questionArea').html(triviaEntry[0].question +"<hr>");
+$('#answerArea').append(triviaEntry[0].answer + "<br>");
+$('#answerArea').append(triviaEntry[0].wrong1 + "<br>");
+$('#answerArea').append(triviaEntry[0].wrong2 + "<br>");
+$('#answerArea').append(triviaEntry[0].wrong3);
