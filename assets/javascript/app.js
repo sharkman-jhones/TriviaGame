@@ -1,10 +1,8 @@
 var correctAnswer = 0;
 var wrongAnswer = 0;
 var unAnswered = 10;
+//Loads only when ready
 $(document).ready(function() {
-    //var askedQuestionNum = [];
-    //var choiceIndex = [];
-    //var clock = 15;
     var triviaEntry = [{
             question: 'Which famous American musician was fatally shot by his father on April 1, 1984?',
             answer: 'Marvin Gaye',
@@ -85,59 +83,24 @@ $(document).ready(function() {
             wrong3: 'Trekkies'
         },
     ];
-    //var randIndex = Math.floor(Math.random()*triviaEntry.length);
 
-
+//Function to generate the questions by iterating through the array of questions defined by triviaEntry
+//At present, all of the correct answers are the first radio button.
     function questionGenerator() {
-        triviaEntry.length
-            //console.log(x);
-            //randIndex = Math.floor(Math.random()*triviaEntry.length);
-            //if (askedQuestionNum.indexOf(randIndex) != -1)
         for (x = 0; x < triviaEntry.length; x++) {
             var myForm = $('<form>')
             $('#questionArea').append(myForm);
             myForm.append(triviaEntry[x].question + "<hr>");
-            //$('#answerArea').empty();
-            //myForm.append('<form id = "question'+x+'" action="">');
             myForm.append('<input type="radio" value="correct">' + triviaEntry[x].answer + '<br>');
             myForm.append('<input type="radio" value="wrong"> ' + triviaEntry[x].wrong1 + '<br>');
             myForm.append('<input type="radio" value="wrong"> ' + triviaEntry[x].wrong2 + '<br>');
             myForm.append('<input type="radio" value="wrong"> ' + triviaEntry[x].wrong3 + '<br>');
-            //$('#question'+x+' input').attr('name', 'question'+x);
             myForm.find('input').attr('name', 'question');
-            //$('#questionArea').append('<input type="submit" id="submitButton" value="Submit">');
             $('#questionArea').append('<br>');
         };
-
-        /*
-			//alert('The button is clicked')
-			if ($("input:checked").val() =='correct'){
-				//return function(){
-					correctAnswer++;
-					unAnswered--;
-					console.log(correctAnswer);
-					alert('Correct!')
-					//questionGenerator();}
-				//}
-			}
-
-			else{
-				//return function(){
-					wrongAnswer++;
-					unAnswered--;
-					console.log(wrongAnswer);
-					alert('Wrong Answer!');
-					//questionGenerator();}
-				//}
-			}
-		});
-
-
-
-		//askedQuestionNum.push(randIndex);
-		//console.log(askedQuestionNum);
-		//console.log(randIndex);
-		*/
+/*Iterates through all of the checked inputs, incrementing the wrong and correct answer totals as needed
+and decrementing the unanswered total.
+*/
         $('#answerArea').append('<input type="submit" id="submitButton" value="Submit">');
         $('#submitButton').click(function() {
             $('input:checked').each(function() {
@@ -149,7 +112,7 @@ $(document).ready(function() {
                     unAnswered--;
                 }
             })
-        
+        //Erases the page to show your results
             $('.jumbotron').html('You got '+correctAnswer+' right, '+wrongAnswer+' wrong, and didn\'t answer '+unAnswered+' questions!');
         });
 
@@ -158,11 +121,9 @@ $(document).ready(function() {
 
 
 
-
+//Calls the function upon clicking the start button.
     $('#startButton').click(function() {
-        //for (x=0; x< triviaEntry.length; x++){
         questionGenerator();
-        //}
     });
 
 
